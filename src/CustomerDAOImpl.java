@@ -1,7 +1,5 @@
 package logic;
 
-
-import java.lang.System.Logger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,7 +32,6 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 	@Override
 	public Customer getCustomer(String userid, String pass) {
-		Logger logger = Logger.getLogger(CustomerDAOImpl.class.getName());
 		Customer c=new Customer();
 	
 		try {
@@ -43,12 +40,14 @@ public class CustomerDAOImpl implements CustomerDAO {
 			ps.setString(1, userid);
 			ps.setString(2, pass);
 		
-			ResultSet rs=ps.executeQuery();
-					
-			while (rs.next()) {
-				c.setUsername(rs.getString(1));
-				c.setPassword(rs.getString(2));
-				c.setName(rs.getString(3));
+			try(ResultSet rs=ps.executeQuery()){
+				while (rs.next()) {
+					c.setUsername(rs.getString(1));
+					c.setPassword(rs.getString(2));
+					c.setName(rs.getString(3));
+				}
+			} catch(Exception e) {
+				System.out.println(e);
 			}
 			
 		}catch(Exception e) {
@@ -58,13 +57,13 @@ public class CustomerDAOImpl implements CustomerDAO {
 				if(ps!=null)
 				ps.close();
 			} catch (SQLException e) {
-				logger.log("warning", e);
+				System.out.println(e);
 			}
 			try {
 				if(con!=null)
 				con.close();
 			} catch (SQLException e) {
-				logger.log("warning", e);
+				System.out.println(e);
 			}
 		}
 		return c;
