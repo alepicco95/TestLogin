@@ -1,11 +1,5 @@
 language: java
 jdk:
     - openjdk11
+script: ant build
 
-addons:
- sonarcloud:
-  organization: alepicco95
-  token: a94f040311afd468bab4876cfe1bac43f58cc5b2
-script: 
-- ant build
-- sonar-scanner
