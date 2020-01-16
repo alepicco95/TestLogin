@@ -5,7 +5,7 @@ jdk:
 addons:
  sonarcloud:
   organization: "alepicco95"
-  token: "003e12636adcdec886d5ae7019a0fe187e35b45b"
+  token: "a94f040311afd468bab4876cfe1bac43f58cc5b2"
 script: 
 - ant build
 - sonar-scanner
