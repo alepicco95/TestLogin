@@ -8,8 +8,8 @@ import java.sql.SQLException;
 
 public class CustomerDAOImpl implements CustomerDAO {
 
-	static Connection con;
-	static PreparedStatement ps;
+	Connection con=null;
+	PreparedStatement ps=null;
 	@Override
 	public int insertCustomer(Customer c) {
 		int status=0;
@@ -55,13 +55,13 @@ public class CustomerDAOImpl implements CustomerDAO {
 		}finally {
 			try {
 				if(ps!=null)
-				ps.close();
+					ps.close();
 			} catch (SQLException e) {
 				System.out.println(e);
 			}
 			try {
 				if(con!=null)
-				con.close();
+					con.close();
 			} catch (SQLException e) {
 				System.out.println(e);
 			}

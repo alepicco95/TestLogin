@@ -14,7 +14,7 @@ public class LoginRegister extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     public LoginRegister() {
-      
+      //default constructor.
     }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
